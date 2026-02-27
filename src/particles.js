@@ -19,13 +19,14 @@ function nextColor(current) {
   return PALETTE[next]
 }
 
-const TARGET_COVERAGE = 0.35
+const TARGET_COVERAGE = 0.10
 const AVG_RADIUS = 15  // midpoint of 6–24 range
+const MAX_PARTICLES = 300
 
 export function createParticles(w, h) {
   const screenArea = w * h
   const avgParticleArea = Math.PI * AVG_RADIUS * AVG_RADIUS
-  const count = Math.max(10, Math.round((TARGET_COVERAGE * screenArea) / avgParticleArea))
+  const count = Math.min(MAX_PARTICLES, Math.max(10, Math.round((TARGET_COVERAGE * screenArea) / avgParticleArea)))
   const particles = []
   for (let i = 0; i < count; i++) {
     const radius = 6 + Math.random() * 18
