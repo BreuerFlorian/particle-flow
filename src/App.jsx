@@ -2,8 +2,6 @@ import { useRef, useEffect, useCallback, useState } from 'react'
 import { createParticles, updateParticles, drawParticles, handleInteraction } from './particles'
 import { AudioEngine } from './audio'
 
-const PARTICLE_COUNT = 60
-
 export default function App() {
   const canvasRef = useRef(null)
   const particlesRef = useRef([])
@@ -22,7 +20,7 @@ export default function App() {
     resize()
     window.addEventListener('resize', resize)
 
-    particlesRef.current = createParticles(PARTICLE_COUNT, canvas.width, canvas.height)
+    particlesRef.current = createParticles(canvas.width, canvas.height)
 
     const loop = () => {
       updateParticles(particlesRef.current, canvas.width, canvas.height)
